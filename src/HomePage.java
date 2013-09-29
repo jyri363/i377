@@ -28,7 +28,7 @@ public class HomePage extends HttpServlet {
 		sess.setAttribute("param", param);
 		out.println("Session attribute is " + param);	
 		out.println("</body></html>");
-		// Nüüd peaks testima või vähemalt kontrollima, kas asi töötab, kuid kahjuks pole mul praegu aega
+		// Nüüd peaks testima või vähemalt kontrollima, kas asi töötab, kuid kahjuks pole mul praegu aega!!!
 	}
 
 }
