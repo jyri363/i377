@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<project name="jyri363" xmlns:ivy="antlib:org.apache.ivy.ant" default="war">
+<project name="jyri363" xmlns:ivy="antlib:org.apache.ivy.ant">
 	<property name="src.dir" location="src" />
 	<property name="build.dir" location="build" />
 	<property name="classes.dir" location="${build.dir}/classes" />
@@ -20,7 +20,7 @@
 	<target name="war" depends="compile">
 		<war destfile="${war.file}" webxml="${web.dir}/WEB-INF/web.xml">
 			<classes dir="${classes.dir}" />
-			<fileset dir="${web.dir}" excludes="**/servlet-api" />
+			<fileset dir="${web.dir}" excludes="**/servlet-api.jar" />
 		</war>
 	</target>
 	
