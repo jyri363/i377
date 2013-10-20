@@ -19,7 +19,8 @@ public class SessionCount extends HttpServlet {
 	// kasutan lihtsalt: http://www.mkyong.com/servlet/a-simple-httpsessionlistener-example-active-sessions-counter/ 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().println("<html><head><title>Count</title></head><body>count: "+ SessionCounterListener.getTotalActiveSession()+"</body></html>");
+		int count = SessionCounterListener.getTotalActiveSession();
+		response.getWriter().println("<html><head><title>Count</title></head><body>count: "+count+"</body></html>");
 	}
 
 }
