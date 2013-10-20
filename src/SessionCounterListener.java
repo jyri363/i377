@@ -7,18 +7,20 @@ public class SessionCounterListener implements HttpSessionListener {
   private static int totalActiveSessions;
  
   public static int getTotalActiveSession(){
-	return totalActiveSessions;
+	  return totalActiveSessions;
   }
  
   @Override
-  public void sessionCreated(HttpSessionEvent arg0) {
-	totalActiveSessions++;
-	System.out.println("sessionCreated - add one session into counter");
+  public void sessionCreated(HttpSessionEvent event) {
+	  totalActiveSessions++;
+	  System.out.println("sessionCreated - add one session into counter");
   }
  
   @Override
-  public void sessionDestroyed(HttpSessionEvent arg0) {
-	totalActiveSessions--;
-	System.out.println("sessionDestroyed - deduct one session from counter");
+  public void sessionDestroyed(HttpSessionEvent event) {
+	  if (totalActiveSessions>0){
+		  totalActiveSessions--;
+	  }
+	  System.out.println("sessionDestroyed - deduct one session from counter");
   }	
 }

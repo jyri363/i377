@@ -19,14 +19,15 @@ public class HomePage extends HttpServlet {
 		PrintWriter out = response.getWriter(); 
 		HttpSession sess = request.getSession();
 		Object param = request.getParameter("param");
-
+		if(param != null)
+            sess.setAttribute("param", param);
 		response.setContentType("text/html");
 
 		out.println("<html><head><title>Hello!</title></head><body>Hello<br />");
 	
 		out.println("Your session id is " +  sess.getId() + "<br />");
-		sess.setAttribute("param", param);
-		out.println("Session attribute is " + param);	
+
+		out.println("Session attribute is " + sess.getAttribute("param"));	
 		out.println("</body></html>");
 	}
 
