@@ -18,11 +18,15 @@ public class Search extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		String searchString = request.getParameter("searchString");
 		Dao dao = new Dao();
 		//PrintWriter out = response.getWriter(); 
 		try {
-			request.setAttribute("searchResults", dao.findAllUnits());
+			if (searchString == null || searchString.equals("")) {
+                request.setAttribute("searchResults", dao.findAllUnits());
+	        } else {
+	            request.setAttribute("searchResults", dao.search(searchString));
+	        }
 			//out.println(dao.findAllUnits());
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -32,7 +36,8 @@ public class Search extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String searchString = request.getParameter("searchString");
+        response.sendRedirect("Search?searchString=" + searchString);
 	}
 
 }

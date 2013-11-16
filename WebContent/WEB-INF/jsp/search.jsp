@@ -6,28 +6,34 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>search</title>
+<link rel="stylesheet" href='<c:url value="/style.css" />' />
 </head>
 <body>
-<table id="listTable" class="listTable">
-        <thead>
-                <tr>
-                        <th scope="col">Nimi</th>
-                        <th scope="col">Kood</th>
-                        <th scope="col"></th>
-                </tr>
-        </thead>
-        <tbody>
-                <c:forEach var="unit" items="${searchResults}">
-                  <tr>
-                          <td>
-                                  <div id="row_${unit.code}">${unit.name}</div>
-                          </td>
-                          <td>
-                                  ${unit.code}
-                          </td>
-                  </tr>
-          </c:forEach>
-        </tbody>
-</table>
+	<form action="Search" method="post">
+	        <input id="searchStringBox" value="" name="searchString" /> <input
+	                id="filterButton" type="submit" value="Filtreeri" /> <br /> <br />
+	
+		<table id="listTable" class="listTable">
+		        <thead>
+		                <tr>
+		                        <th scope="col">Nimi</th>
+		                        <th scope="col">Kood</th>
+		                        <th scope="col"></th>
+		                </tr>
+		        </thead>
+		        <tbody>
+		                <c:forEach var="unit" items="${searchResults}">
+		                  <tr>
+		                          <td>
+		                                  <div id="row_${unit.code}">${unit.name}</div>
+		                          </td>
+		                          <td>
+		                                  ${unit.code}
+		                          </td>
+		                  </tr>
+		          </c:forEach>
+		        </tbody>
+		</table>
+	</form>
 </body>
 </html>
