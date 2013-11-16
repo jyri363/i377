@@ -40,6 +40,7 @@
 		<war destfile="${war.file}" webxml="${web.dir}/WEB-INF/web.xml">
 			<classes dir="${classes.dir}" />
 			<fileset dir="${web.dir}" excludes="**/servlet-api.jar" />
+			<zipfileset dir="${src.dir}" includes="**/*.sql" prefix="WEB-INF/classes/" />
 		</war>
 	</target>
 	
