@@ -7,13 +7,15 @@ import java.util.List;
 public class Dao extends AbstractDao {
 	public List<Unit> findAllUnits() throws SQLException{
 		List<Unit> units = new ArrayList<Unit>();
-	    try {
+		try {
 
 	        st = getConnection().createStatement();
 	        rs = st.executeQuery("select * from unit");
 	        while(rs.next()){
 	        	Unit unit = new Unit();
-	        	unit.setName(rs.getString(1));
+	        	unit.setId(Integer.parseInt(rs.getString("id")));
+	        	unit.setName(rs.getString("name"));
+	        	unit.setCode(rs.getString("code"));
 	        	units.add(unit);
 	        }
 	    } finally {
