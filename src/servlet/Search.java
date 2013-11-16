@@ -37,6 +37,7 @@ public class Search extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String searchString = request.getParameter("searchString");
+		request.setAttribute("searchString", searchString);
         response.sendRedirect("Search?searchString=" + searchString);
 	}
 

@@ -1,17 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>search</title>
-<link rel="stylesheet" href='<c:url value="/style.css" />' />
-</head>
-<body>
-	<form action="Search" method="post">
-	        <input id="searchStringBox" value="" name="searchString" /> <input
-	                id="filterButton" type="submit" value="Filtreeri" /> <br /> <br />
+<%@ include file="header.jsp" %>
+<%@ include file="menu.jsp" %>
+	<form action="Search" method="get">
+        <input id="searchStringBox" name="searchString" value="${param.searchString}" />
+        <input id="filterButton" value="Filtreeri" type="submit">
+        <br /> <br />
 	
 		<table id="listTable" class="listTable">
 		        <thead>
@@ -35,5 +27,4 @@
 		        </tbody>
 		</table>
 	</form>
-</body>
-</html>
+<%@ include file="footer.jsp" %>
