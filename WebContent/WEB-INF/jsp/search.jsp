@@ -22,6 +22,9 @@
 		                          <td>
 		                                  ${unit.code}
 		                          </td>
+		                          <td>                
+                                          <a id="delete_${unit.code}" href="Delete?&id=${unit.id}">Kustuta</a>
+                                  </td>
 		                  </tr>
 		          </c:forEach>
 		        </tbody>

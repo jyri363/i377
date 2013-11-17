@@ -41,4 +41,32 @@ public class Dao extends AbstractDao {
 	    }
 		return units;
     }
+    public boolean deleteAll() throws SQLException {
+        try {
+                st = getConnection().createStatement();
+                rs = st.executeQuery("DELETE FROM unit");
+        } finally {
+                closeResources();
+        }
+        return true;
+	}
+	
+	public boolean deleteUnit(int id) throws SQLException {
+	        try {
+	                st = getConnection().createStatement();
+	                rs = st.executeQuery("DELETE FROM unit WHERE id = " + id);
+	        } finally {
+	                closeResources();
+	        }
+	        return true;
+	}
+    public boolean addUnit(String name, String code) throws SQLException {
+        try {
+                st = getConnection().createStatement();
+                rs = st.executeQuery("INSERT INTO unit VALUES (NEXT VALUE FOR seq1), '" + name + "', '" + code + "'");
+        } finally {
+                closeResources();
+        }
+        return true;
+    }
 }
