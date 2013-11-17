@@ -8,7 +8,7 @@
 	<property name="lib.dir" location="${web.dir}/WEB-INF/lib" />
 	<property name="ivy.retrieve.pattern" value="${lib.dir}/[artifact]-[type]-[revision].[ext]" />
 	<property name="ivylib.dir" location="${basedir}/lib" />
-	<property name="war.file" location="jyri363.war" />
+	<property name="war.file" value="jyri363.war" />
 
 	<path id="classpath">
 		<fileset dir="${ivylib.dir}">
