@@ -23,7 +23,7 @@
 		                                  ${unit.code}
 		                          </td>
 		                          <td>                
-                                          <a id="delete_${unit.code}" href="Delete?&id=${unit.id}">Kustuta</a>
+                                          <a id="delete_${unit.code}" href="Search?do=delete&amp;id=${unit.id}">Kustuta</a>
                                   </td>
 		                  </tr>
 		          </c:forEach>

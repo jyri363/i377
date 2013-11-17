@@ -19,9 +19,15 @@ public class Search extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String searchString = request.getParameter("searchString");
+		String delete = request.getParameter("do");
 		Dao dao = new Dao();
+		
 		//PrintWriter out = response.getWriter(); 
 		try {
+			if ("delete".equals(delete)) {
+				int id = Integer.parseInt(request.getParameter("id"));
+				new Dao().deleteUnit(id);
+			}
 			if (searchString == null || searchString.equals("")) {
                 request.setAttribute("searchResults", dao.findAllUnits());
 	        } else {
