@@ -9,6 +9,12 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <listener>
+    <listener-class>SessionCounterListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>listener.InitDatabaseListener</listener-class>
+  </listener>
   <servlet>
     <description></description>
     <display-name>Hello</display-name>
