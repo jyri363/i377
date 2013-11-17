@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<project name="jyri363" xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." default="compile">
+<project name="jyri363" xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." default="war">
 	<property name="basedir" location="." />
 	<property name="src.dir" location="${basedir}/src" />
 	<property name="build.dir" location="${basedir}/build" />
@@ -8,7 +8,7 @@
 	<property name="lib.dir" location="${web.dir}/WEB-INF/lib" />
 	<property name="ivy.retrieve.pattern" value="${lib.dir}/[artifact]-[type]-[revision].[ext]" />
 	<property name="ivylib.dir" location="${basedir}/lib" />
-	<property name="war.file" location="jyri363.war" />
+	<property name="war.file" value="jyri363.war" />
 
 	<path id="classpath">
 		<fileset dir="${ivylib.dir}">
