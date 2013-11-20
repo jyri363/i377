@@ -6,6 +6,6 @@ public class DbTest {
 
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		//new SetupDao().createSchema();
-		new SetupDao().insertSampleData();
+		//new SetupDao().insertSampleData();
 	}
 }
