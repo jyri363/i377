@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,12 +21,7 @@ public class Admin extends HttpServlet {
         if("insert_data".equals(action)){
         	new SetupDao().insertSampleData();
         } else if("clear_data".equals(action)) {			 
-        	try {
-				new Dao().deleteAll();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        	new Dao().deleteAll();
 		 }
         response.sendRedirect("Search");
 	}

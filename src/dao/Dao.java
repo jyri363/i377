@@ -1,71 +1,98 @@
 package dao;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class Dao extends AbstractDao {
-	public List<Unit> findAllUnits() throws SQLException{
-		List<Unit> units = new ArrayList<Unit>();
-		try {
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
-	        st = getConnection().createStatement();
-	        rs = st.executeQuery("select * from unit");
-	        while(rs.next()){
-	        	Unit unit = new Unit();
-	        	unit.setId(Integer.parseInt(rs.getString("id")));
-	        	unit.setName(rs.getString("name"));
-	        	unit.setCode(rs.getString("code"));
-	        	units.add(unit);
-	        }
-	    } finally {
-			closeResources();
-	    }
-		return units;
-	}
-    public List<Unit> search(String s)  throws SQLException{
-		List<Unit> units = new ArrayList<Unit>();
-		try {
+import util.JpaUtil;
+import model.Unit;
 
-			st = getConnection().createStatement();
-            rs = st.executeQuery("SELECT * FROM unit WHERE lower(name) LIKE '%" + s.toLowerCase() + "%'");
-	        while(rs.next()){
-	        	Unit unit = new Unit();
-	        	unit.setId(Integer.parseInt(rs.getString("id")));
-	        	unit.setName(rs.getString("name"));
-	        	unit.setCode(rs.getString("code"));
-	        	units.add(unit);
-	        }
-	    } finally {
-			closeResources();
-	    }
-		return units;
+public class Dao {
+    private static void close(EntityManager em) {
+        if (em != null) em.close();
     }
-    public boolean deleteAll() throws SQLException {
+    public Unit findById(Long id) {
+		EntityManager em = null;
         try {
-                st = getConnection().createStatement();
-                rs = st.executeQuery("DELETE FROM unit");
+            em = JpaUtil.getFactory().createEntityManager();
+            return em.find(Unit.class, id);
         } finally {
-                closeResources();
+            close(em);
+        }
+    }
+
+    public static List<Unit> findAllUnits() {
+        EntityManager em = null;
+        try {
+            em = JpaUtil.getFactory().createEntityManager();
+
+            TypedQuery<Unit> query = em.createQuery(
+                    "select p from Unit p", Unit.class);
+
+            return query.getResultList();
+
+        } finally {
+        	close(em);
+        }
+    }
+    public List<Unit> search(String s) {
+    	EntityManager em = null;
+		try {
+			em = JpaUtil.getFactory().createEntityManager();
+			TypedQuery<Unit> query = em.createQuery("select p from Unit p"
+					+ " WHERE lower(name) LIKE '%" + s.toLowerCase() + "%'", Unit.class);
+			return query.getResultList();
+	    } finally {
+	    	close(em);
+	    }
+    }
+    public boolean deleteAll() {
+        EntityManager em = null;
+        try {
+        	em = JpaUtil.getFactory().createEntityManager();
+        	em.getTransaction().begin();
+        	Query query = em.createQuery("delete from Unit where 1=1");
+            query.executeUpdate();
+
+            em.getTransaction().commit();
+        } finally {
+        	close(em);
         }
         return true;
 	}
 	
-	public boolean deleteUnit(int id) throws SQLException {
-	        try {
-	                st = getConnection().createStatement();
-	                rs = st.executeQuery("DELETE FROM unit WHERE id = " + id);
-	        } finally {
-	                closeResources();
-	        }
-	        return true;
-	}
-    public boolean addUnit(String name, String code) throws SQLException {
+	public boolean deleteUnit(Long id) {
+        EntityManager em = null;
         try {
-                st = getConnection().createStatement();
-                rs = st.executeQuery("INSERT INTO unit VALUES (NEXT VALUE FOR seq1), '" + name + "', '" + code + "'");
+        	em = JpaUtil.getFactory().createEntityManager();
+        	em.getTransaction().begin();
+        	Unit unit = em.find(Unit.class, id);
+            if (unit != null) em.remove(unit);
+
+            em.getTransaction().commit();
         } finally {
-                closeResources();
+        	close(em);
+        }
+        return true;
+	}
+
+
+    public boolean addUnit(Unit unit) {
+    	EntityManager em = null;
+    	try {
+            em = JpaUtil.getFactory().createEntityManager();
+            em.getTransaction().begin();
+            if (unit.getId() == null) {
+                em.persist(unit);
+            } else {
+                em.merge(unit);
+            }
+
+            em.getTransaction().commit();
+        } finally {
+        	close(em);
         }
         return true;
     }

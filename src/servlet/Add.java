@@ -1,13 +1,12 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Unit;
 import dao.Dao;
 
 /**
@@ -25,10 +24,9 @@ public class Add extends HttpServlet {
 	}
 	
 	private void addUnit(HttpServletRequest request) {
-	    try {
-	            new Dao().addUnit(request.getParameter("name"), request.getParameter("code"));
-	    } catch (SQLException e) {
-	            throw new RuntimeException(e);
-	    }
+		Unit unit = new Unit();
+		unit.setName(request.getParameter("name"));
+        unit.setCode(request.getParameter("code"));
+	    new Dao().addUnit(unit);
 	}
 }
