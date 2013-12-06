@@ -11,6 +11,8 @@ public class Unit {
 	private Long id;
     private String name;
     private String code;
+    private Long super_unit_id;
+    
 	public Long getId() {
 		return id;
 	}
@@ -29,5 +31,12 @@ public class Unit {
 	public void setCode(String code) {
 		this.code = code;
 	}
-    
+	public Long getSuper_unit_id() {
+		return super_unit_id;
+	}
+	public void setSuper_unit_id(Long super_unit_id) {
+		this.super_unit_id = super_unit_id;
+	}
+	
+	
 }
