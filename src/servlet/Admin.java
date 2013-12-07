@@ -21,7 +21,7 @@ public class Admin extends HttpServlet {
         if("insert_data".equals(action)){
         	new SetupDao().insertSampleData();
         } else if("clear_data".equals(action)) {			 
-        	new Dao().deleteAll();
+        	Dao.deleteAll();
 		 }
         response.sendRedirect("Search");
 	}

@@ -13,7 +13,7 @@ public class Dao {
     private static void close(EntityManager em) {
         if (em != null) em.close();
     }
-    public Unit findById(Long id) {
+    public static Unit findById(Long id) {
 		EntityManager em = null;
         try {
             em = JpaUtil.getFactory().createEntityManager();
@@ -21,6 +21,27 @@ public class Dao {
         } finally {
             close(em);
         }
+    }
+    public static Unit findByCode(String code) {
+		EntityManager em = null;
+        try {
+            em = JpaUtil.getFactory().createEntityManager();
+            Unit unit = em.createQuery("select p from Unit p where p.code=:code",
+                    Unit.class).getSingleResult();
+            return unit;
+        } finally {
+            close(em);
+        }
+    }
+    public static List<Unit> findByChildId(Long id) {
+    	EntityManager em = null;
+		try {
+			em = JpaUtil.getFactory().createEntityManager();
+			List<Unit> query = em.createQuery("select p from Unit p where p.super_unit_id = "+id, Unit.class).getResultList();
+			return query;
+	    } finally {
+	    	close(em);
+	    }
     }
 
     public static List<Unit> findAllUnits() {
@@ -37,7 +58,7 @@ public class Dao {
         	close(em);
         }
     }
-    public List<Unit> search(String s) {
+    public static List<Unit> search(String s) {
     	EntityManager em = null;
 		try {
 			em = JpaUtil.getFactory().createEntityManager();
@@ -48,7 +69,7 @@ public class Dao {
 	    	close(em);
 	    }
     }
-    public boolean deleteAll() {
+    public static void deleteAll() {
         EntityManager em = null;
         try {
         	em = JpaUtil.getFactory().createEntityManager();
@@ -60,10 +81,9 @@ public class Dao {
         } finally {
         	close(em);
         }
-        return true;
 	}
 	
-	public boolean deleteUnit(Long id) {
+	public static void deleteUnit(Long id) {
         EntityManager em = null;
         try {
         	em = JpaUtil.getFactory().createEntityManager();
@@ -75,11 +95,10 @@ public class Dao {
         } finally {
         	close(em);
         }
-        return true;
 	}
 
 
-    public boolean addUnit(Unit unit) {
+    public static void addUnit(Unit unit) {
     	EntityManager em = null;
     	try {
             em = JpaUtil.getFactory().createEntityManager();
@@ -94,6 +113,9 @@ public class Dao {
         } finally {
         	close(em);
         }
-        return true;
     }
+
+	public static void viewUnit(Unit unit) {
+
+	}
 }

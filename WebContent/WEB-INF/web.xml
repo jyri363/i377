@@ -12,7 +12,6 @@
   <listener>
     <listener-class>SessionCounterListener</listener-class>
   </listener>
-
   <listener>
     <listener-class>listener.InitDatabaseListener</listener-class>
   </listener>
@@ -95,5 +94,15 @@
   <servlet-mapping>
     <servlet-name>Admin</servlet-name>
     <url-pattern>/Admin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>View</display-name>
+    <servlet-name>View</servlet-name>
+    <servlet-class>servlet.View</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>View</servlet-name>
+    <url-pattern>/View</url-pattern>
   </servlet-mapping>
 </web-app>

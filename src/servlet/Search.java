@@ -15,16 +15,15 @@ public class Search extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String searchString = request.getParameter("searchString");
 		String delete = request.getParameter("do");
-		Dao dao = new Dao();
 		
 		if ("delete".equals(delete)) {
 			Long id = (long) Integer.parseInt(request.getParameter("id"));
-			new Dao().deleteUnit(id);
+			Dao.deleteUnit(id);
 		}
 		if (searchString == null || searchString.equals("")) {
 		    request.setAttribute("searchResults", Dao.findAllUnits());
 		} else {
-		    request.setAttribute("searchResults", dao.search(searchString));
+		    request.setAttribute("searchResults", Dao.search(searchString));
 		}
 		//out.println(dao.findAllUnits());
 		request.getRequestDispatcher("WEB-INF/jsp/search.jsp").forward(request, response);

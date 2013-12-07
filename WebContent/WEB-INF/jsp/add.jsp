@@ -6,13 +6,13 @@
 			<tr>
 				<td>Nimi:</td>
 				<td>
-					<input id="nameBox" name="name">
+					<input id="nameBox" name="name" />
 				</td>
 			</tr>
 			<tr>
 				<td>Kood:</td>
 				<td>
-					<input id="codeBox" name="code">
+					<input id="codeBox" name="code" />
 				</td>
 			</tr>
 			<tr>
@@ -21,7 +21,7 @@
           			<select id="superUnitCode" name="superUnitCode" >
         				<option value=""></option>
                         <c:forEach items="${selectUnit}" var="unit">
-                                <option value="${unit.code}">${unit.name}</option>
+                                <option value="${unit.id}">${unit.name}</option>
                         </c:forEach>
         			</select>
 	          </td>
@@ -34,7 +34,7 @@
 			<tr>
 				<td align="right" colspan="2">
 					<br>
-					<input id="addButton" type="submit" value="Lisa">
+					<input id="addButton" type="submit" value="Lisa" />
 				</td>
 			</tr>
 		</tbody>
