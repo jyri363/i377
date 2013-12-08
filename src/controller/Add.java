@@ -1,4 +1,4 @@
-package servlet;
+package controller;
 
 import java.io.IOException;
 
@@ -11,30 +11,28 @@ import model.Unit;
 import dao.Dao;
 
 /**
- * Servlet implementation class View
+ * Servlet implementation class Add
  */
-public class View extends HttpServlet {
+public class Add extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	request.setAttribute("selectUnit", Dao.findAllUnits());
-    	
-    	viewUnit(request);
-	    request.getRequestDispatcher("WEB-INF/jsp/view.jsp").forward(request, response);
+	    request.getRequestDispatcher("WEB-INF/jsp/add.jsp").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	   
+	    addUnit(request);
 	    response.sendRedirect("Search");
 	}
 	
-	private void viewUnit(HttpServletRequest request) {
-		Unit unit = Dao.findById(Long.parseLong(request
-                .getParameter("id")));
-		request.setAttribute("name", unit.getName());
-		request.setAttribute("code", unit.getCode());
-       if(unit.getSuper_unit_id()!=null)
-    	   request.setAttribute("superUnit",Dao.findById(unit.getSuper_unit_id()));
-       request.setAttribute("child",Dao.findByChildId(unit.getId()));
+	private void addUnit(HttpServletRequest request) {
+		Unit unit = new Unit();
+		unit.setName(request.getParameter("name"));
+        unit.setCode(request.getParameter("code"));
+        if(request.getParameter("superUnitCode")!=""){
+        	Unit test=Dao.findByCode(request.getParameter("superUnitCode"));
+        	unit.setSuper_unit_id(test.getId());
+        }
+	   Dao.addUnit(unit);
 	}
-
 }
