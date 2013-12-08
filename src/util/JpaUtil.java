@@ -8,7 +8,7 @@ public class JpaUtil {
     private static EntityManagerFactory emf;
 
     static {
-        emf = Persistence.createEntityManagerFactory("my-hsql-unit",
+        emf = Persistence.createEntityManagerFactory("unit",
                 new PropertyLoader().getPropertiesAsMap());
     }
 

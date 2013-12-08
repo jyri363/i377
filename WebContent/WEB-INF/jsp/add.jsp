@@ -21,7 +21,7 @@
           			<select id="superUnitCode" name="superUnitCode" >
         				<option value=""></option>
                         <c:forEach items="${selectUnit}" var="unit">
-                                <option value="${unit.id}">${unit.name}</option>
+                                <option value="${unit.code}">${unit.name}</option>
                         </c:forEach>
         			</select>
 	          </td>

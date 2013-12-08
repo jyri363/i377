@@ -26,7 +26,7 @@ public class Dao {
 		EntityManager em = null;
         try {
             em = JpaUtil.getFactory().createEntityManager();
-            Unit unit = em.createQuery("select p from Unit p where p.code=:code",
+            Unit unit = em.createQuery("select p from Unit p where p.code='"+code+"'",
                     Unit.class).getSingleResult();
             return unit;
         } finally {

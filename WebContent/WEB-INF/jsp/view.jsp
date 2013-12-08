@@ -23,10 +23,10 @@
         				<c:forEach items="${selectUnit}" var="unit">
                                 <c:choose>
                                       <c:when test="${superUnit.id==unit.id}">
-                                              <option value="${unit.id}" selected='selected'>${unit.name}</option>
+                                              <option value="${unit.code}" selected='selected'>${unit.name}</option>
                                       </c:when>
                                       <c:otherwise>
-                                              <option value="${unit.id}">${unit.name}</option>
+                                              <option value="${unit.code}">${unit.name}</option>
                                       </c:otherwise>
                                 </c:choose>
                         </c:forEach>

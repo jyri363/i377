@@ -30,8 +30,8 @@ public class Add extends HttpServlet {
 		unit.setName(request.getParameter("name"));
         unit.setCode(request.getParameter("code"));
         if(request.getParameter("superUnitCode")!=""){
-        	unit.setSuper_unit_id((long) Integer.parseInt(
-        			request.getParameter("superUnitCode")));
+        	Unit test=Dao.findByCode(request.getParameter("superUnitCode"));
+        	unit.setSuper_unit_id(test.getId());
         }
 	   Dao.addUnit(unit);
 	}
